@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Pilsner",
+        "producent": "Bestmalz",
+        "color": "light",
+        "ebc": 4
+      },
+      {
+        "id": 2,
+        "name": "Wheat Heidelberg",
+        "producent": "Bestmalz",
+        "color": "light",
+        "ebc": 3
+      },
+      {
+        "id": 3,
+        "name": "Munich",
+        "producent": "Bestmalz",
+        "color": "light",
+        "ebc": 15
+      },
+      {
+        "id": 4,
+        "name": "Pale Ale",
+        "producent": "Bestmalz",
+        "color": "light",
+        "ebc": 6
+      },
+      {
+        "id": 5,
+        "name": "Melanoid",
+        "producent": "Bestmalz",
+        "color": "middle",
+        "ebc": 70
+      },
+      {
+        "id": 6,
+        "name": "Abbey",
+        "producent": "Castlemalting",
+        "color": "middle",
+        "ebc": 45
+      },
+      {
+        "id": 7,
+        "name": "Carmel 150",
+        "producent": "Viking Malt",
+        "color": "brown",
+        "ebc": 150
+      },
+      {
+        "id": 8,
+        "name": "Carmel 30",
+        "producent": "Viking Malt",
+        "color": "middle",
+        "ebc": 30
+      },
+      {
+        "id": 9,
+        "name": "Chocolate",
+        "producent": "Viking Malt",
+        "color": "dark",
+        "ebc": 900
+      },
+      {
+        "id": 10,
+        "name": "Viena",
+        "producent": "Viking Malt",
+        "color": "light",
+        "ebc": 9
+      }
+]
