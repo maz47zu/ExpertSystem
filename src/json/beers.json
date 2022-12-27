@@ -225,7 +225,7 @@
         "bitterness":20,
         "color":"light",
         "blg":11.5,
-        "style":"LAGER",
+        "style":"lager",
         "malts": [
           {
             "malt1": "Pilsner",
