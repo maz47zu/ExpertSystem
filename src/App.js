@@ -15,6 +15,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 
+
 const theme = createTheme();
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -36,15 +37,19 @@ function App() {
 
   //hook do ustalania aktualnej listy piw
   const [curBeersArr, setCurBeersArr] = useState(beers);
+  const [curMalts, setCurMalts] = useState({})
+  const [curMaltsPerc, setCurMaltsPerc] = useState({})
 
   //hook do otwierania DialogBoxa
   const [open, setOpen] = useState(false);
+  const [submitButton, setSubmitButton] = useState(true);
 
   //funkcja tworząca tablicę unikalnych nazw/wartości
   const uniqueNames = (arr) => [...new Set(arr)];
 
   //definicja zmiennej obiektowej (przechowywuje wybrane zmienne)
   let params = {};
+
 
   //za każdym razem gdy zmieni się któryś z parametrów -> zmienia się zmienna `params`
   useEffect(() => {
@@ -60,18 +65,28 @@ function App() {
       params.Name = name;
     setCurBeersArr(handleFindCriterium(curBeersArr, params));
     console.log(curBeersArr);
-    console.log(params);
-    // eslint-disable-next-line
-  }, [color, ibu, blg, style, name]);
+    // console.log(params);
 
+    (Object.keys(params).length < 5)
+      ? setSubmitButton(true)
+      : setSubmitButton(false);
+
+  }, [color, ibu, blg, style, name]);
 
   //funckja obsługująca dobór słodów
   const handleSubmit = (event) => {
     event.preventDefault();
+    // console.log(curBeersArr[0].malts[0])
+    // Object.keys(curBeersArr[0].malts[0]).forEach((key, index) => {
+    //   console.log(curBeersArr[0].malts[0][key]);
+    // })
+    setCurMalts(curBeersArr[0].malts[0]);
+    setCurMaltsPerc(curBeersArr[0].maltPercent[0]);
+
     setOpen(true);
   };
 
-  const handleCloseDialog = ()=>{
+  const handleCloseDialog = () => {
     setColor('');
     setIbu('');
     setBlg('');
@@ -82,6 +97,15 @@ function App() {
     setOpen(false);
   }
 
+  const eraseAll = () => {
+    setColor('');
+    setIbu('');
+    setBlg('');
+    setStyle('');
+    setName('');
+    params = {};
+    setCurBeersArr(beers);
+  }
   //funkcja tworzenia wartości wyboru
   const handleCreateSelects = (sel) => {
     let arr = [];
@@ -100,6 +124,7 @@ function App() {
     });
     // console.log(handleFindCriterium(beers,{color:'dark',blg:'17'}));
   };
+  //
 
   // funckje obsługujące zmiane selectów
   const handleChangeColor = (event) => {
@@ -218,8 +243,18 @@ function App() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                disabled={submitButton}
               >
                 Dobierz słody!
+              </Button>
+              <Button
+                color='error'
+                fullWidth
+                variant="contained"
+                onClick={eraseAll}
+                sx={{ mt: 0, mb: 2 }}
+              >
+                Wyczyść
               </Button>
             </Box>
           </Box>
@@ -230,17 +265,19 @@ function App() {
           keepMounted
           onClose={handleCloseDialog}
           aria-describedby="alert-dialog-slide-description"
+          sx={{ width: '60%' }}
         >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogTitle>{"Wybrane piwo: " + curBeersArr[0].Name}</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-slide-description">
-              Let Google help apps determine location. This means sending anonymous
-              location data to Google, even when no apps are running.
-            </DialogContentText>
+            <Typography sx={{fontSize:'1.2rem'}}>{"Użyj poniższych słodów w proporcjach :"}</Typography>
+              {(curMaltsPerc.malt1)?<Typography sx={{fontSize:'1.2rem', mt:'10px'}}>{curMaltsPerc.malt1 +'% '+ curMalts.malt1}</Typography>:<></>}
+              {(curMaltsPerc.malt2)?<Typography sx={{fontSize:'1.2rem'}}>{curMaltsPerc.malt2 +'% '+curMalts.malt2}</Typography>:<></>}
+              {(curMaltsPerc.malt3)?<Typography sx={{fontSize:'1.2rem'}}>{curMaltsPerc.malt3 +'% '+curMalts.malt3}</Typography>:<></>}
+              {(curMaltsPerc.malt4)?<Typography sx={{fontSize:'1.2rem'}}>{curMaltsPerc.malt4 +'% '+curMalts.malt4}</Typography>:<></>}
+              {(curMaltsPerc.malt5)?<Typography sx={{fontSize:'1.2rem'}}>{curMaltsPerc.malt4 +'% '+curMalts.malt5}</Typography>:<></>}
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseDialog}>Disagree</Button>
-            <Button onClick={handleCloseDialog}>Agree</Button>
+            <Button onClick={handleCloseDialog}>To wszytsko!</Button>
           </DialogActions>
         </Dialog>
       </Grid>
