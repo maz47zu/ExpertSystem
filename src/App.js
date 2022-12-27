@@ -50,6 +50,16 @@ function App() {
   //definicja zmiennej obiektowej (przechowywuje wybrane zmienne)
   let params = {};
 
+  //definicja wyświetlanego urla
+  const [url,setUrl] = useState('url(https://www.monederosmart.com/pl-pl/wp-content/uploads/2021/09/VpO-M3T-xmQ-FmW-malz-header.jpg)')
+  useEffect(() => {
+    if (color === 'light')
+      setUrl('url(https://www.monederosmart.com/pl-pl/wp-content/uploads/2021/09/VpO-M3T-xmQ-FmW-malz-header.jpg)')
+    if (color === 'medium')
+    setUrl('url(https://i.insider.com/5476423e69beddbb65619d0d?width=910&format=jpeg)')
+    if (color === 'dark')
+      setUrl('url(https://targipiwne.pl/wp-content/uploads/2019/12/S%C5%82%C3%B3d-j%C4%99czmienny-palony.jpg)')
+  }, [color]);
 
   //za każdym razem gdy zmieni się któryś z parametrów -> zmienia się zmienna `params`
   useEffect(() => {
@@ -155,7 +165,7 @@ function App() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: url,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
