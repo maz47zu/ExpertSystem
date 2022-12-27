@@ -56,7 +56,7 @@ function App() {
     if (color === 'light')
       setUrl('url(https://www.monederosmart.com/pl-pl/wp-content/uploads/2021/09/VpO-M3T-xmQ-FmW-malz-header.jpg)')
     if (color === 'medium')
-    setUrl('url(https://i.insider.com/5476423e69beddbb65619d0d?width=910&format=jpeg)')
+      setUrl('url(https://i.insider.com/5476423e69beddbb65619d0d?width=910&format=jpeg)')
     if (color === 'dark')
       setUrl('url(https://targipiwne.pl/wp-content/uploads/2019/12/S%C5%82%C3%B3d-j%C4%99czmienny-palony.jpg)')
   }, [color]);
@@ -86,10 +86,6 @@ function App() {
   //funckja obsługująca dobór słodów
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(curBeersArr[0].malts[0])
-    // Object.keys(curBeersArr[0].malts[0]).forEach((key, index) => {
-    //   console.log(curBeersArr[0].malts[0][key]);
-    // })
     setCurMalts(curBeersArr[0].malts[0]);
     setCurMaltsPerc(curBeersArr[0].maltPercent[0]);
 
