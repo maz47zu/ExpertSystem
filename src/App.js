@@ -283,7 +283,7 @@ function App() {
               {(curMaltsPerc.malt5)?<Typography sx={{fontSize:'1.2rem'}}>{curMaltsPerc.malt4 +'% '+curMalts.malt5}</Typography>:<></>}
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseDialog}>To wszytsko!</Button>
+            <Button onClick={handleCloseDialog}>Zamknij</Button>
           </DialogActions>
         </Dialog>
       </Grid>
